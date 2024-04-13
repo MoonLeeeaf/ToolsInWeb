@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bilibili 视频分享</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://www.unpkg.com/jquery@3.7.1/dist/jquery.min.js"></script>
+        <style>
+             iframe.player {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <link rel="icon" href="https://www.bilibili.com/favicon.ico?v=1" />
+    </head>
+    <body>
+        <iframe class="player" frameborder="0"></iframe>
+        <script>
+            let param = new URL(location.href).searchParams
+            let url = param.get("url")
+            if (!url) url = ""
+            url = url.toLowerCase()
+        
+            // 死🐴跨域 害得我没法施展黑魔法
+            // 电脑端直接去看吧，移动端的网页端体验更差，电脑端的外链很垃圾
+            if (!/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
+                if (url.trim() != "")
+                    location.replace(url.startsWith("http") ? url : "https://www.bilibili.com/video/" + url)
+                else {
+                    alert("电脑端的体验很垃圾，因此已经阻断了访问，另外你的参数没有 url=xxx，不会发生任何事。\n\n请关闭此页面，这是个失效的页面。")
+                    location.replace("about:blank")
+                }
+        
+            /*function setUserAgent(window, userAgent) {
+                if (window.navigator.userAgent != userAgent) {
+                    let userAgentProp = { get: function () { return userAgent; } };
+                    try {
+                        Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
+                    } catch (e) {
+                        window.navigator = Object.create(navigator, {
+                            userAgent: userAgentProp
+                        })
+                    }
+                }
+            }*/
+            
+            let base = "https://player.bilibili.com/player.html?"
+            
+            let i = url.indexOf("bv")
+            if (i !== -1)
+                url = base + "bvid=" + url.substring(i, 114514)
+            
+            i = url.indexOf("av")
+            if (i !== -1)
+                url = base + "avid=" + url.substring(i, 114514)
+            
+            if (i === -1) {
+                alert("找不到视频！ 本网页的调用格式: [原文件地址]?url=[视频地址/BV号/AV号]\n\n例: " + location.href + "?url=BV19C411t7C9\n\n接下来将播放示范视频")
+                url = base + "bvid=BV19C411t7C9"
+            }
+             
+            let p = $("iframe.player")
+            // setUserAgent(p.get(0).contentWindow, "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36")
+            p.attr("src", url)
+        </script>
+    </body>
+</html>
