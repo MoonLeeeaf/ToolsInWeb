@@ -5,5 +5,9 @@
 ### 工具列表
 
 * bilibili-jump
-这是一个为更简洁地分享B站视频而写的封装网页，当然对电脑端的支持不是很好
-使用方法：把 https://moonleeeaf.github.io/ToolsInWeb/bilibili-jump.html?url=[B站视频链接或者AV/BV号] 分享出去即可
+  * 这是一个为更简洁地分享B站视频而写的封装网页，当然对电脑端的支持不是很好
+  * 使用方法：把 https://moonleeeaf.github.io/ToolsInWeb/bilibili-jump.html?url=[B站视频链接或者AV/BV号] 分享出去即可
+
+### 许可
+
+目前而言，如需使用这些代码或者嵌入这些网页，在一些地方注明来源即可
