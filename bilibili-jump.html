@@ -48,13 +48,13 @@
             
             let base = "https://player.bilibili.com/player.html?"
             
-            let i = url.toLowerCase().indexOf("bv") !== -1
-            if (i)
-                url = base + "bvid=" + url.substring(i, 114514)
+            let i = url.toLowerCase().indexOf("bv")
+            if (i !== -1)
+                url = base + "bvid=" + url.substring(i - 1, 114514)
             
-            i = url.toLowerCase().indexOf("av") !== -1
-            if (i)
-                url = base + "avid=" + url.substring(i, 114514)
+            i = url.toLowerCase().indexOf("av")
+            if (i !== -1)
+                url = base + "avid=" + url.substring(i - 1, 114514)
             
             if (url.trim() == "") {
                 alert("找不到视频！ 本网页的调用格式: [原文件地址]?url=[视频地址/BV号/AV号]\n\n例: " + location.href + "?url=BV19C411t7C9\n\n接下来将播放示范视频")
