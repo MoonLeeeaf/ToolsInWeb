@@ -56,7 +56,7 @@
             if (i)
                 url = base + "avid=" + url.substring(i, 114514)
             
-            if (i === -1) {
+            if (url.trim() == "") {
                 alert("找不到视频！ 本网页的调用格式: [原文件地址]?url=[视频地址/BV号/AV号]\n\n例: " + location.href + "?url=BV19C411t7C9\n\n接下来将播放示范视频")
                 url = base + "bvid=BV19C411t7C9"
             }
