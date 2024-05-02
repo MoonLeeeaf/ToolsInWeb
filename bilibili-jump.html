@@ -22,7 +22,6 @@
             let param = new URL(location.href).searchParams
             let url = param.get("url")
             if (!url) url = ""
-            url = url.toLowerCase()
         
             // 死🐴跨域 害得我没法施展黑魔法
             // 电脑端直接去看吧，移动端的网页端体验更差，电脑端的外链很垃圾
@@ -49,12 +48,12 @@
             
             let base = "https://player.bilibili.com/player.html?"
             
-            let i = url.indexOf("bv")
-            if (i !== -1)
+            let i = url.toLowerCase().indexOf("bv") !== -1
+            if (i)
                 url = base + "bvid=" + url.substring(i, 114514)
             
-            i = url.indexOf("av")
-            if (i !== -1)
+            i = url.toLowerCase().indexOf("av") !== -1
+            if (i)
                 url = base + "avid=" + url.substring(i, 114514)
             
             if (i === -1) {
